@@ -11,16 +11,22 @@ function getRandomCard(pile) {
 }
 
 function GameScreen({ players }) {
-	const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0); // <--- define aquí
+	const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 	const [currentCard, setCurrentCard] = useState(null);
+	const [scores, setScores] = useState(Array(players.length).fill(0));
 
 	const handlePick = (pileIdx) => {
 		setCurrentCard(getRandomCard(piles[pileIdx]));
 	};
 
-	const handleNextTurn = () => {
+	const handleResult = (success) => {
+		if (success && currentCard) {
+			const newScores = [...scores];
+			newScores[currentPlayerIndex] += currentCard.points;
+			setScores(newScores);
+		}
 		setCurrentCard(null);
-		setCurrentPlayerIndex((prev) => (prev + 1) % players.length); // <--- usa así
+		setCurrentPlayerIndex((prev) => (prev + 1) % players.length);
 	};
 
 	return (
@@ -36,8 +42,10 @@ function GameScreen({ players }) {
 			) : (
 				<div>
 					<h3>Reto:</h3>
-					<p>{currentCard}</p>
-					<button onClick={handleNextTurn}>Siguiente turno</button>
+					<p>{currentCard.text}</p>
+					<p>Puntos: {currentCard.points}</p>
+					<button onClick={() => handleResult(true)}>✅</button>
+					<button onClick={() => handleResult(false)}>❌</button>
 				</div>
 			)}
 			<div>
@@ -45,7 +53,7 @@ function GameScreen({ players }) {
 				<ul>
 					{players.map((p, i) => (
 						<li key={i} style={{ fontWeight: i === currentPlayerIndex ? 'bold' : 'normal' }}>
-							{p}
+							{p} - {scores[i]} pts
 						</li>
 					))}
 				</ul>
