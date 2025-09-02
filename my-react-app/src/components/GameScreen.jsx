@@ -120,8 +120,8 @@ function GameScreen({ players }) {
 					<button onClick={() => handlePick(0)}>MISIONES DE SIGILO</button>
 					<button onClick={() => handlePick(1)}>KARMA</button>
 					<button onClick={() => handlePick(2)}>SORPRESA</button>
-					<button onClick={() => handlePick(3)}></button>
-					<button onClick={() => handlePick(4)}></button>
+					<button onClick={() => handlePick(3)}>EVENTOS ESPECIALES</button>
+					<button onClick={() => handlePick(4)}>ROBOS CON ASALTO</button>
 				</div>
 			) : (
 				<div>
