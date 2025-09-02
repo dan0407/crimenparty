@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddPlayersScreen from './components/AddPlayersScreen';
 import RulesScreen from './components/RulesScreen';
 import GameScreen from './components/GameScreen';
+import './App.css';
 
 const App = () => {
 	const [players, setPlayers] = useState([]);

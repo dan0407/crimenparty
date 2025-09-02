@@ -4,6 +4,7 @@ import pile2 from '../data/pile2';
 import pile3 from '../data/pile3';
 import pile4 from '../data/pile4';
 import pile5 from '../data/pile5';
+import './GameScreen.css';
 
 const piles = [pile1, pile2, pile3, pile4, pile5];
 
@@ -30,7 +31,7 @@ function GameScreen({ players }) {
 			if (currentPileIndex === 1) {
 				newScores[currentPlayerIndex] += currentCard.money;
 			} else {
-				
+
 				newScores[currentPlayerIndex] += currentCard.money;
 			}
 			setScores(newScores);
@@ -41,31 +42,33 @@ function GameScreen({ players }) {
 	};
 
 	return (
-		<div>
-			<h2>Turno de: {players[currentPlayerIndex]}</h2>
-			{!currentCard ? (
-				<div>
-					<p>Elige una pila de cartas:</p>
-					<button onClick={() => handlePick(0)}>MISIONES DE SIGILO</button>
-					<button onClick={() => handlePick(1)}>KARMA</button>
-					<button onClick={() => handlePick(2)}>SORPRESA</button>
-					<button onClick={() => handlePick(3)}>EVENTOS ESPECIALES</button>
-					<button onClick={() => handlePick(4)}>ROBOS CON ASALTO</button>
-				</div>
-			) : (
-				<div>
-					<h3>{currentCard.title}</h3>
-					<p>{currentCard.text}</p>
-					<p>Dinero: ${currentCard.money}</p>
-					<button onClick={() => handleResult(true)}>✅</button>
-					<button onClick={() => handleResult(false)}>❌</button>
-				</div>
-			)}
-			<div>
+		<div className="game-container">
+			<div className="main-content">
+				<h2>Turno de: {players[currentPlayerIndex]}</h2>
+				{!currentCard ? (
+					<div className="pile-selection">
+						<p>Elige una pila de cartas:</p>
+						<button onClick={() => handlePick(0)}>MISIONES DE SIGILO</button>
+						<button onClick={() => handlePick(1)}>KARMA</button>
+						<button onClick={() => handlePick(2)}>SORPRESA</button>
+						<button onClick={() => handlePick(3)}>EVENTOS ESPECIALES</button>
+						<button onClick={() => handlePick(4)}>ROBOS CON ASALTO</button>
+					</div>
+				) : (
+					<div className="card-display">
+						<h3>{currentCard.title}</h3>
+						<p>{currentCard.text}</p>
+						<p>Dinero: ${currentCard.money}</p>
+						<button onClick={() => handleResult(true)}>✅</button>
+						<button onClick={() => handleResult(false)}>❌</button>
+					</div>
+				)}
+			</div>
+			<div className="players-sidebar">
 				<h4>Jugadores:</h4>
 				<ul>
 					{players.map((p, i) => (
-						<li key={i} style={{ fontWeight: i === currentPlayerIndex ? 'bold' : 'normal' }}>
+						<li key={i} className={i === currentPlayerIndex ? 'current-player' : ''}>
 							{p} - {scores[i]} $$
 						</li>
 					))}

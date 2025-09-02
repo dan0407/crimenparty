@@ -1,0 +1,263 @@
+/* Crimen Party - Rules Screen CSS */
+:root {
+  /* Color palette based on Crimen Party board game */
+  --primary-teal: #4ECDC4;
+  --primary-red: #E63946;
+  --primary-orange: #FFA726;
+  --primary-beige: #F5F5DC;
+  --accent-blue: #457B9D;
+  --text-dark: #2D3436;
+  --text-light: #FFFFFF;
+  --border-dark: #2D3436;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+.rules-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-beige) 0%, #F0E68C 100%);
+  padding: 20px;
+  font-family: 'Arial Black', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rules-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.rules-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  text-shadow: 3px 3px 0px var(--primary-orange);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: var(--primary-orange);
+  padding: 20px 40px;
+  border-radius: 20px;
+  border: 4px solid var(--border-dark);
+  box-shadow: 8px 8px 0px var(--shadow);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.rules-subtitle {
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-top: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rules-content {
+  max-width: 800px;
+  background: var(--text-light);
+  border: 4px solid var(--border-dark);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0px var(--shadow);
+  padding: 40px;
+  margin-bottom: 30px;
+  transform: rotate(1deg);
+}
+
+.rules-section {
+  margin-bottom: 30px;
+}
+
+.rules-section h3 {
+  font-size: 1.8rem;
+  color: var(--primary-red);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  border-bottom: 3px solid var(--primary-teal);
+  padding-bottom: 10px;
+}
+
+.rules-section p {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  background: var(--primary-beige);
+  border: 2px solid var(--border-dark);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-dark);
+  position: relative;
+  padding-left: 50px;
+}
+
+.rules-list li::before {
+  content: "🎯";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+.rules-list li:nth-child(even) {
+  background: var(--primary-teal);
+  color: var(--text-light);
+}
+
+.rules-list li:nth-child(3n) {
+  background: var(--primary-orange);
+  color: var(--text-dark);
+}
+
+.pile-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.pile-card {
+  background: var(--text-light);
+  border: 3px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 4px 4px 0px var(--shadow);
+  transform: rotate(-1deg);
+  transition: all 0.3s ease;
+}
+
+.pile-card:nth-child(even) {
+  transform: rotate(1deg);
+  background: var(--primary-teal);
+  color: var(--text-light);
+}
+
+.pile-card:nth-child(3n) {
+  background: var(--primary-orange);
+  color: var(--text-dark);
+}
+
+.pile-card:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 6px 6px 0px var(--shadow);
+}
+
+.pile-card h4 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pile-card p {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.next-button {
+  background: var(--primary-red);
+  color: var(--text-light);
+  border: 4px solid var(--border-dark);
+  border-radius: 15px;
+  padding: 20px 40px;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 8px 8px 0px var(--shadow);
+  transform: rotate(-2deg);
+  margin: 20px 0;
+}
+
+.next-button:hover {
+  background: #d32f2f;
+  transform: rotate(0deg) scale(1.1);
+  box-shadow: 10px 10px 0px var(--shadow);
+}
+
+.next-button:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 2px 2px 0px var(--shadow);
+}
+
+.warning-box {
+  background: var(--primary-red);
+  color: var(--text-light);
+  border: 4px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 4px 4px 0px var(--shadow);
+  transform: rotate(-1deg);
+}
+
+.warning-box h4 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .rules-title {
+    font-size: 2.5rem;
+    padding: 15px 25px;
+  }
+  
+  .rules-content {
+    margin: 0 10px;
+    padding: 20px;
+  }
+  
+  .pile-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .next-button {
+    font-size: 1.4rem;
+    padding: 15px 30px;
+  }
+  
+  .rules-section h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(1deg);
+  }
+}
+
+.rules-content {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.pile-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: calc(var(--delay, 0) * 0.1s);
+}
