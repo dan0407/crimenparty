@@ -26,11 +26,11 @@ function GameScreen({ players }) {
 	const handleResult = (success) => {
 		if (success && currentCard) {
 			const newScores = [...scores];
-			// Para pile 2 (karma), siempre aplicar el efecto cuando se hace check
+
 			if (currentPileIndex === 1) {
 				newScores[currentPlayerIndex] += currentCard.money;
 			} else {
-				// Para otras pilas, solo sumar si es positivo
+				
 				newScores[currentPlayerIndex] += currentCard.money;
 			}
 			setScores(newScores);
