@@ -1,5 +1,5 @@
 export default [
-	{ text: 'Haz una adivinanza y deja que los demás la resuelvan.', points: 5 },
+	{ text: 'Haz una adivinanza y deja que los demás la resuelvan.', points: 5},
 	{ text: 'Cuenta una historia inventada en 30 segundos.', points: 7 },
 	{ text: 'Haz una voz de robot durante 1 minuto.', points: 6 },
 	{ text: 'Haz una ronda de palmadas con todos los jugadores.', points: 4 },
