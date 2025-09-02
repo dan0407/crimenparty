@@ -1,12 +1,52 @@
 export default [
-	{ text: 'Realiza 10 saltos en el lugar.', points: 5 },
-	{ text: 'Imita a un animal durante 1 minuto.', points: 7 },
-	{ text: 'Canta una canción de tu elección.', points: 6 },
-	{ text: 'Haz 5 flexiones.', points: 8 },
-	{ text: 'Baila durante 30 segundos.', points: 5 },
-	{ text: 'Cuenta un chiste.', points: 4 },
-	{ text: 'Haz una pose de yoga durante 15 segundos.', points: 6 },
-	{ text: 'Recita el abecedario al revés.', points: 9 },
-	{ text: 'Dibuja algo en el aire con tu dedo.', points: 3 },
-	{ text: 'Haz una carrera en el lugar durante 20 segundos.', points: 7 },
+	{ 
+		title: 'Te sapearon',
+		text: 'Te sapearon → Pierdes un poco de dinero.', 
+		money: -25 
+	},
+	{ 
+		title: 'Se te cayó el efectivo',
+		text: 'Se te cayó el efectivo → Pierdes algo de dinero extra.', 
+		money: -40 
+	},
+	{ 
+		title: 'Te pilló el Tombo',
+		text: 'Te pilló el Tombo → Pierdes tu próximo turno.', 
+		money: 0 
+	},
+	{ 
+		title: 'Resbalaste en la esquina',
+		text: 'Resbalaste en la esquina → Retrocedes 1 casilla.', 
+		money: 0 
+	},
+	{ 
+		title: 'Te metiste por el barrio que no era',
+		text: 'Te metiste por el barrio que no era → Retrocedes 2 casillas.', 
+		money: 0 
+	},
+	{ 
+		title: 'El parcero se volteó',
+		text: 'El parcero se volteó → Entregas $30 al jugador de tu derecha.', 
+		money: -30 
+	},
+	{ 
+		title: 'Te embalaste',
+		text: 'Te embalaste → Pierdes más dinero de lo normal por tu error.', 
+		money: -50 
+	},
+	{ 
+		title: 'Vino el gota a gota',
+		text: 'Vino el gota a gota → Pagas con una cantidad baja de dinero.', 
+		money: -20 
+	},
+	{ 
+		title: 'Se te subió la tusa',
+		text: 'Se te subió la tusa → Pierdes dinero y un turno.', 
+		money: -35 
+	},
+	{ 
+		title: 'Diste papaya',
+		text: 'Diste papaya → Pierdes una cantidad mayor de dinero pero sin quebrarte.', 
+		money: -60 
+	},
 ];
