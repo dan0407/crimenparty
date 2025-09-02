@@ -57,7 +57,7 @@ function GameScreen({ players }) {
 				<ul>
 					{players.map((p, i) => (
 						<li key={i} style={{ fontWeight: i === currentPlayerIndex ? 'bold' : 'normal' }}>
-							{p} - {scores[i]} pts
+							{p} - {scores[i]} $
 						</li>
 					))}
 				</ul>
