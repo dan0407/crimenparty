@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import pile1 from '../data/pile1';
 import pile2 from '../data/pile2';
 import pile3 from '../data/pile3';
+import pile4 from '../data/pile4';
+import pile5 from '../data/pile5';
 
-const piles = [pile1, pile2, pile3];
+const piles = [pile1, pile2, pile3, pile4, pile5];
 
 function getRandomCard(pile) {
 	const idx = Math.floor(Math.random() * pile.length);
@@ -38,6 +40,8 @@ function GameScreen({ players }) {
 					<button onClick={() => handlePick(0)}>Pila 1</button>
 					<button onClick={() => handlePick(1)}>Pila 2</button>
 					<button onClick={() => handlePick(2)}>Pila 3</button>
+					<button onClick={() => handlePick(3)}>Pila 4</button>
+					<button onClick={() => handlePick(4)}>Pila 5</button>
 				</div>
 			) : (
 				<div>
