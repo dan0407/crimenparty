@@ -18,27 +18,62 @@ function GameScreen({ players }) {
 	const [currentCard, setCurrentCard] = useState(null);
 	const [currentPileIndex, setCurrentPileIndex] = useState(null);
 	const [scores, setScores] = useState(Array(players.length).fill(0));
+	const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(0);
+	const [customAmount, setCustomAmount] = useState('');
+	const [useCustomAmount, setUseCustomAmount] = useState(false);
+	const [playerAmounts, setPlayerAmounts] = useState([]);
 
 	const handlePick = (pileIdx) => {
-		setCurrentCard(getRandomCard(piles[pileIdx]));
+		const card = getRandomCard(piles[pileIdx]);
+		setCurrentCard(card);
 		setCurrentPileIndex(pileIdx);
+		setSelectedPlayerIndex(currentPlayerIndex);
+		setCustomAmount('');
+		setUseCustomAmount(false);
+		
+		// Inicializar cantidades para eventos policiales
+		if (pileIdx === 3) {
+			setPlayerAmounts(players.map(() => card.money.toString()));
+		} else {
+			setPlayerAmounts([]);
+		}
 	};
 
 	const handleResult = (success) => {
 		if (success && currentCard) {
 			const newScores = [...scores];
 
-			if (currentPileIndex === 1) {
-				newScores[currentPlayerIndex] += currentCard.money;
+			// Si es un Evento Policial (pila 3, índice 3), usar cantidades individuales
+			if (currentPileIndex === 3) {
+				for (let i = 0; i < newScores.length; i++) {
+					const amount = playerAmounts[i] ? parseInt(playerAmounts[i]) : 0;
+					newScores[i] += amount;
+				}
 			} else {
-
-				newScores[currentPlayerIndex] += currentCard.money;
+				// Para otros eventos, solo afecta al jugador seleccionado
+				const amountToAdd = useCustomAmount && customAmount ?
+					parseInt(customAmount) : currentCard.money;
+				newScores[selectedPlayerIndex] += amountToAdd;
 			}
+			
 			setScores(newScores);
 		}
 		setCurrentCard(null);
 		setCurrentPileIndex(null);
 		setCurrentPlayerIndex((prev) => (prev + 1) % players.length);
+	};
+
+	const toggleCustomAmount = () => {
+		setUseCustomAmount(!useCustomAmount);
+		if (!useCustomAmount) {
+			setCustomAmount(currentCard?.money?.toString() || '');
+		}
+	};
+
+	const updatePlayerAmount = (playerIndex, amount) => {
+		const newAmounts = [...playerAmounts];
+		newAmounts[playerIndex] = amount;
+		setPlayerAmounts(newAmounts);
 	};
 
 	return (
@@ -51,7 +86,7 @@ function GameScreen({ players }) {
 						<button onClick={() => handlePick(0)}>MISIONES DE SIGILO</button>
 						<button onClick={() => handlePick(1)}>KARMA</button>
 						<button onClick={() => handlePick(2)}>SORPRESA</button>
-						<button onClick={() => handlePick(3)}>EVENTOS ESPECIALES</button>
+						<button onClick={() => handlePick(3)}>EVENTOS POLICIAL</button>
 						<button onClick={() => handlePick(4)}>ROBOS CON ASALTO</button>
 					</div>
 				) : (
@@ -59,8 +94,72 @@ function GameScreen({ players }) {
 						<h3>{currentCard.title}</h3>
 						<p>{currentCard.text}</p>
 						<p>Dinero: ${currentCard.money}</p>
-						<button onClick={() => handleResult(true)}>✅</button>
-						<button onClick={() => handleResult(false)}>❌</button>
+
+						<div className="card-controls">
+							{currentPileIndex === 3 ? (
+								<div className="police-event-section">
+									<div className="police-event-warning">
+										<h4>👮 EVENTO POLICIAL</h4>
+										<p>Personalizar cantidad para cada jugador</p>
+									</div>
+									<div className="players-amounts-grid">
+										{players.map((player, index) => (
+											<div key={index} className="player-amount-control">
+												<label className="player-label">{player}:</label>
+												<input
+													type="number"
+													className="player-amount-input"
+													value={playerAmounts[index] || ''}
+													onChange={(e) => updatePlayerAmount(index, e.target.value)}
+													placeholder="0"
+												/>
+											</div>
+										))}
+									</div>
+								</div>
+							) : (
+								<div className="player-selector">
+									<label>Jugador que recibe:</label>
+									<select
+										value={selectedPlayerIndex}
+										onChange={(e) => setSelectedPlayerIndex(parseInt(e.target.value))}
+									>
+										{players.map((player, index) => (
+											<option key={index} value={index}>
+												{player}
+											</option>
+										))}
+									</select>
+								</div>
+							)}
+
+							{currentPileIndex !== 3 && (
+								<div className="amount-controls">
+									<button
+										className={`custom-amount-btn ${useCustomAmount ? 'active' : ''}`}
+										onClick={toggleCustomAmount}
+									>
+										Cantidad
+									</button>
+
+									{useCustomAmount && (
+										<div className="custom-amount-input">
+											<input
+												type="number"
+												value={customAmount}
+												onChange={(e) => setCustomAmount(e.target.value)}
+												placeholder="Cantidad personalizada"
+											/>
+										</div>
+									)}
+								</div>
+							)}
+
+							<div className="result-buttons">
+								<button className="success-btn" onClick={() => handleResult(true)}>✅ Éxito</button>
+								<button className="fail-btn" onClick={() => handleResult(false)}>❌ Fracaso</button>
+							</div>
+						</div>
 					</div>
 				)}
 			</div>
