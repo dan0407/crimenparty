@@ -1,52 +1,34 @@
-export default [
-	{ 
-		title: 'Cara o Cruz',
-		text: 'El ladrón lanza una moneda: Cara → roba $30. Cruz → paga $30.', 
-		money: 30 
+const pile5 = [
+	{
+		title: 'Bloqueo de salida',
+		text: '🔹 Instrucción: Cada jugador lanza un dado. 🔹 Regla: Si el total entre todos es 12 o más → logran escapar y siguen normal. Si no → todos retroceden 2 casillas y todos pierden algo de dinero ($30).',
+		money: -30
 	},
-	{ 
-		title: 'Choque frontal',
-		text: 'Ladrón y víctima tiran un dado. Mayor gana el asalto, menor paga $35.', 
-		money: 35 
+	{
+		title: 'Helicóptero en el aire',
+		text: '🔹 Instrucción: Los jugadores votan un líder. Ese jugador lanza un dado. 🔹 Regla: Si saca 4, 5 o 6 → todos avanzan 1 casilla gratis. Si saca 1, 2 o 3 → el líder debe pagar a todos ($40).',
+		money: -40
 	},
-	{ 
-		title: 'Robo Express',
-		text: 'El ladrón señala rápidamente a un jugador y le quita $25. Si la víctima grita "¡Alto!" antes de 3 segundos → el ladrón paga el doble.', 
-		money: 25 
+	{
+		title: 'Persecución policial',
+		text: '🔹 Instrucción: Cada jugador elige en secreto entre "correr", "esconderse" o "despistar" (se apunta en papel o se dice al tiempo). 🔹 Regla: Si dos o más jugadores eligen lo mismo → la policía los anticipa y cada uno pierde dinero ($25) y un turno. Si hay división → solo se salvan los de la opción distinta.',
+		money: -25
 	},
-	{ 
-		title: 'Tira y corre',
-		text: 'Ambos (ladrón y víctima) tiran dos dados. Si el ladrón saca suma par → gana $40. Si saca impar → paga $40.', 
-		money: 40 
+	{
+		title: 'Redada sorpresa',
+		text: '🔹 Instrucción: Todos deben decidir en secreto cuánto dinero digital ofrecen para saldar la deuda de ($100). 🔹 Regla: Si entre todos alcanzan la cuota mínima → todos se salvan y recuperan su dinero. Si no llegan → todos pierden el doble de lo que ofrecieron.',
+		money: -100
 	},
-	{ 
-		title: 'El arma secreta',
-		text: 'El ladrón esconde una ficha en una de sus manos cerradas. Si la víctima adivina la mano → el asalto falla y el ladrón paga $30. Si falla → el ladrón gana $30.', 
-		money: 30 
+	{
+		title: 'Retén policial',
+		text: '🔹 Instrucción: Cada jugador lanza un dado. 🔹 Regla: Si tu número es par → pierdes dinero ($35). Si es impar → te salvas. Si alguien saca 6 → se salvan y puede salvar a otro jugador.',
+		money: -35
 	},
-	{ 
-		title: 'Puño limpio',
-		text: 'Ambos lanzan piedra/papel/tijera: Si gana el ladrón → roba $35. Si gana la víctima → el ladrón paga $35.', 
-		money: 35 
-	},
-	{ 
-		title: 'La emboscada',
-		text: 'El ladrón pide ayuda a un cómplice (otro jugador). Si logran sacar juntos un total mayor en los dados que la víctima → roban $45. Si pierden → ambos pagan $45.', 
-		money: 45 
-	},
-	{ 
-		title: 'Asalto fallido',
-		text: 'El ladrón intenta robar $20, pero debe hacerlo con los ojos cerrados tocando las fichas de la víctima. Si toma más → paga $40. Si toma exacto → gana.', 
-		money: 20 
-	},
-	{ 
-		title: 'Amenaza vacía',
-		text: 'El ladrón anuncia el asalto, pero puede estar fingiendo. Si la víctima entrega $25 sin comprobar → el ladrón gana. Si se niega y el ladrón no tenía con qué robar → el ladrón paga $50.', 
-		money: 25 
-	},
-	{ 
-		title: 'Resistencia',
-		text: 'El ladrón roba $30 automáticamente, pero la víctima puede decidir pagar $15 para "resistir" y recuperarlo.', 
-		money: 30 
-	},
+	{
+		title: 'Interrogatorio',
+		text: '🔹 Instrucción: Cada jugador lanza un dado. 🔹 Regla: Si alguien saca 6 → logra despistar a la poli y todos se salvan. Si nadie saca 6 → cada jugador paga una suma ($20).',
+		money: -20
+	}
 ];
+
+export default pile5;

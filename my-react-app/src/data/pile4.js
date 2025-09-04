@@ -1,52 +1,44 @@
-export default [
-	{ 
-		title: 'Corte de luz',
-		text: 'Todos cierran los ojos. El jugador en turno roba $40 de la caja sin que lo descubran. Si alguien lo señala con el dedo justo al abrir los ojos → debe devolver el doble.', 
-		money: 40 
+const pile4 = [
+	{
+		title: 'El golpe en caliente',
+		text: '🔹 Instrucción: El ladrón en turno lanza 2 dados al mismo tiempo. 🔹 Regla: Si la suma es 8 o más → el asalto es exitoso, roba ($40) de cada jugador. Si la suma es entre 5 y 7 → el guardia se resiste, roba ($30) a un jugador elegido, pero debe pagar ($30) a otro jugador que él mismo escoja. Si la suma es 4 o menos → el asalto fracasa, paga ($40) a cada jugador y retrocede una casilla. 👉 Con 2 jugadores: Si es exitoso (8+), roba el doble al otro. Si fracasa (4-), paga el doble y pierde un turno.',
+		money: 40
 	},
-	{ 
-		title: 'Soplón en la banda',
-		text: 'Todos ponen una ficha en el centro. El jugador en turno reparte al azar las fichas con los ojos cerrados. El que reciba su propia ficha debe pagar $25 a todos.', 
-		money: 25 
+	{
+		title: 'Balacera en la entrada',
+		text: '🔹 Instrucción: Todos los jugadores lanzan un dado al mismo tiempo. 🔹 Regla: Si el ladrón obtiene el número más alto  → gana el tiroteo y roba ($50) de todos. Si queda en empate → roba ($30) de un jugador y paga ($30) a otro. Si obtiene el número más bajo que los jugadores presentes  → paga ($50) a todos y retrocede una casilla. 👉 Con 2 jugadores: El que saque más alto roba ($50) del otro.',
+		money: 50
 	},
-	{ 
-		title: 'El Informante',
-		text: 'Cada jugador elige en secreto a alguien sospechoso (señalando con el dedo a escondidas). El que reciba más votos paga $35.', 
-		money: 35 
+	{
+		title: 'Puerta reventada',
+		text: '🔹 Instrucción: El ladrón en turno lanza un dado. 🔹 Regla: Si saca 5 o 6 → rompe la puerta y roba ($45) de todos. Si saca 3 o 4 → logra entrar a medias, roba ($35) de un jugador. Si saca 1 o 2 → la explosión falla, paga ($45) a todos. 👉 Con 2 jugadores: Si saca 5 o 6 roba el doble, si saca 1 o 2 paga el doble.',
+		money: 45
 	},
-	{ 
-		title: 'Explosión de dinamita',
-		text: 'Todos lanzan un dado: 1–2 → pierden $20 a la caja. 3–4 → no pasa nada. 5–6 → ganan $20 de la caja.', 
-		money: 20 
+	{
+		title: 'Saqueo exprés',
+		text: '🔹 Instrucción: El ladrón elige a un jugador y ambos lanzan un dado. 🔹 Regla: Si el ladrón saca más → roba ($35) de ese jugador. Si empatan → ninguno gana ni pierde. Si el otro gana → el ladrón paga ($35) a ese jugador. 👉 Con 2 jugadores: Funciona igual.',
+		money: 35
 	},
-	{ 
-		title: 'Cambio de máscaras',
-		text: 'Todos deben intercambiar al azar 1 ficha/moneda con el jugador de la izquierda.', 
-		money: 0 
+	{
+		title: 'Asalto perfecto',
+		text: '🔹 Instrucción: El ladrón piensa en secreto un número del 1 al 10 y los demás tienen 2 oportunidades por persona de atinar (si hay mas de 4 jugadores sera una oportunidad por persona). 🔹 Regla: Si nadie acierta → el asalto sale perfecto y roba ($55) de todos. Si alguien acierta → paga ($55) a ese jugador. 👉 Con 2 jugadores: Si el rival acierta → gana él. Si falla → gana el ladrón.',
+		money: 55
 	},
-	{ 
-		title: 'Escape en coche',
-		text: 'Todos tiran un dado. El número más bajo paga $30 a la caja.', 
-		money: 30 
+	{
+		title: 'Explosión fallida',
+		text: '🔹 Instrucción: El ladrón lanza 2 dados. 🔹 Regla: Si ambos son pares → la explosión es limpia, roba ($60) de todos. Si uno es par y otro impar → roba ($40) de un jugador al azar. Si ambos son impares → falla, paga ($60) a todos y pierde un turno. 👉 Con 2 jugadores: Si ambos son impares → además de pagar, retrocede una casilla.',
+		money: 60
 	},
-	{ 
-		title: 'El Botín se divide',
-		text: 'Cada jugador da una ficha a la caja. Luego se revuelven y se reparten al azar de nuevo.', 
-		money: 0 
+	{
+		title: 'Carga al límite',
+		text: '🔹 Instrucción: El ladrón lanza un dado. 🔹 Regla: Si saca 6 → el asalto es brutal, roba ($80) de todos. Si saca 3, 4 o 5 → asalto normal, roba ($40) de un jugador. Si saca 1 o 2 → la policía llega, retrocede 2 casillas. 👉 Con 2 jugadores: Si saca 6 roba el doble del otro.',
+		money: 80
 	},
-	{ 
-		title: 'Calle bloqueada',
-		text: 'El jugador en turno pierde su siguiente oportunidad de robar, pero gana $15 como compensación de la caja.', 
-		money: 15 
-	},
-	{ 
-		title: 'Golpe fallido',
-		text: 'Todos los jugadores pierden $25 excepto el que tenga menos fichas, que gana $50.', 
-		money: -25 
-	},
-	{ 
-		title: 'Recompensa policial',
-		text: 'El jugador con más fichas debe pagar $20 a todos los demás como "recompensa".', 
-		money: -20 
-	},
+	{
+		title: 'Corriendo con el botín',
+		text: '🔹 Instrucción: El ladrón lanza un dado. 🔹 Regla: Si saca 4, 5 o 6 → logra escapar, avanza 2 casillas y roba ($30) de un jugador. Si saca 1, 2 o 3 → tropieza, paga ($30) al jugador de la derecha. 👉 Con 2 jugadores: Si tropieza paga el doble.',
+		money: 30
+	}
 ];
+
+export default pile4;

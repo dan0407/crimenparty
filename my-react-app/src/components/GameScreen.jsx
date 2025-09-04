@@ -22,6 +22,7 @@ function GameScreen({ players }) {
 	const [customAmount, setCustomAmount] = useState('');
 	const [useCustomAmount, setUseCustomAmount] = useState(false);
 	const [playerAmounts, setPlayerAmounts] = useState([]);
+	const [round, setRound] = useState(1);
 
 	const handlePick = (pileIdx) => {
 		const card = getRandomCard(piles[pileIdx]);
@@ -31,8 +32,8 @@ function GameScreen({ players }) {
 		setCustomAmount('');
 		setUseCustomAmount(false);
 		
-		// Inicializar cantidades para eventos policiales
-		if (pileIdx === 3) {
+		// Inicializar cantidades para pilas con inputs personalizados
+		if (pileIdx === 0 || pileIdx === 3 || pileIdx === 4) {
 			setPlayerAmounts(players.map(() => card.money.toString()));
 		} else {
 			setPlayerAmounts([]);
@@ -43,8 +44,8 @@ function GameScreen({ players }) {
 		if (success && currentCard) {
 			const newScores = [...scores];
 
-			// Si es un Evento Policial (pila 3, índice 3), usar cantidades individuales
-			if (currentPileIndex === 3) {
+			// Si es una pila con inputs personalizados, usar cantidades individuales
+			if (currentPileIndex === 0 || currentPileIndex === 3 || currentPileIndex === 4) {
 				for (let i = 0; i < newScores.length; i++) {
 					const amount = playerAmounts[i] ? parseInt(playerAmounts[i]) : 0;
 					newScores[i] += amount;
@@ -60,7 +61,13 @@ function GameScreen({ players }) {
 		}
 		setCurrentCard(null);
 		setCurrentPileIndex(null);
-		setCurrentPlayerIndex((prev) => (prev + 1) % players.length);
+		const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
+		setCurrentPlayerIndex(nextPlayerIndex);
+		
+		// Incrementar ronda cuando volvemos al primer jugador
+		if (nextPlayerIndex === 0) {
+			setRound(prev => prev + 1);
+		}
 	};
 
 	const toggleCustomAmount = () => {
@@ -79,7 +86,10 @@ function GameScreen({ players }) {
 	return (
 		<div className="game-container">
 			<div className="main-content">
-				<h2>Turno de: {players[currentPlayerIndex]}</h2>
+				<div className="game-header">
+					<h2>Turno de: {players[currentPlayerIndex]}</h2>
+					<h3>Ronda: {round}</h3>
+				</div>
 				{!currentCard ? (
 					<div className="pile-selection">
 						<p>Elige una pila de cartas:</p>
@@ -88,6 +98,15 @@ function GameScreen({ players }) {
 						<button onClick={() => handlePick(2)}>SORPRESA</button>
 						<button onClick={() => handlePick(3)}>EVENTOS POLICIAL</button>
 						<button onClick={() => handlePick(4)}>ROBOS CON ASALTO</button>
+						<button onClick={() => {
+							const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
+							setCurrentPlayerIndex(nextPlayerIndex);
+							if (nextPlayerIndex === 0) {
+								setRound(prev => prev + 1);
+							}
+						}}>
+							Casilla normal o perdiste turno
+						</button>
 					</div>
 				) : (
 					<div className="card-display">
@@ -96,12 +115,8 @@ function GameScreen({ players }) {
 						<p>Dinero: ${currentCard.money}</p>
 
 						<div className="card-controls">
-							{currentPileIndex === 3 ? (
+							{(currentPileIndex === 0 || currentPileIndex === 3 || currentPileIndex === 4) ? (
 								<div className="police-event-section">
-									<div className="police-event-warning">
-										<h4>👮 EVENTO POLICIAL</h4>
-										<p>Personalizar cantidad para cada jugador</p>
-									</div>
 									<div className="players-amounts-grid">
 										{players.map((player, index) => (
 											<div key={index} className="player-amount-control">
@@ -133,7 +148,7 @@ function GameScreen({ players }) {
 								</div>
 							)}
 
-							{currentPileIndex !== 3 && (
+							{(currentPileIndex !== 0 && currentPileIndex !== 3 && currentPileIndex !== 4) && (
 								<div className="amount-controls">
 									<button
 										className={`custom-amount-btn ${useCustomAmount ? 'active' : ''}`}

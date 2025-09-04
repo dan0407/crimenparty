@@ -1,12 +1,12 @@
-export default [
+const pile3 = [
 	{ 
 		title: 'Trabajito extra',
-		text: 'Trabajito extra → Ganas un poco de dinero.', 
+		text: 'Trabajito extra → Ganas un poco de dinero ($25).', 
 		money: 25 
 	},
 	{ 
 		title: 'El parcero dio papaya',
-		text: 'El parcero dio papaya → Recibes dinero del jugador de tu izquierda.', 
+		text: 'El parcero dio papaya → Recibes dinero del jugador de tu izquierda ($30).', 
 		money: 30 
 	},
 	{ 
@@ -21,17 +21,17 @@ export default [
 	},
 	{ 
 		title: 'El contacto respondió',
-		text: 'El contacto respondió → Otro jugador debe darte un poquito de dinero, el jugador de la derecha.', 
+		text: 'El contacto respondió → Otro jugador debe darte un poquito de dinero, el jugador de la derecha ($20).', 
 		money: 20 
 	},
 	{ 
 		title: 'Caíste parado',
-		text: 'Caíste parado → Recuperas lo que perdiste en la última penalización.', 
+		text: 'Caíste parado → Recuperas lo que perdiste en la última penalización ($35).', 
 		money: 35 
 	},
 	{ 
 		title: 'Te salió la lotería',
-		text: 'Te salió la lotería → Ganas bastante más de lo normal.', 
+		text: 'Te salió la lotería → Ganas bastante más de lo normal ($75).', 
 		money: 75 
 	},
 	{ 
@@ -45,8 +45,11 @@ export default [
 		money: 40 
 	},
 	{ 
-		title: 'Ladrón experto',
-		text: 'Ladrón experto → Doblas la recompensa que consigas en tu próximo minijuego de sigilo.', 
+		title: 'Ladron experto',
+		text: 'Ladron experto → Doblas la recompensa que consigas en tu próximo minijuego de sigilo.', 
 		money: 0 
 	},
 ];
+
+export default pile3;
+
